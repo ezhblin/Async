@@ -1,0 +1,33 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "0055g00000CxAcuAAF",
+      "createdByName": "Eugene Shemetov",
+      "createdDate": "2021-09-22T08:16:40.000Z",
+      "fileName": "triggers/ContactTrigger.trigger",
+      "fullName": "ContactTrigger",
+      "id": "01q5g000001cnJQAAY",
+      "lastModifiedById": "0055g00000CxAcuAAF",
+      "lastModifiedByName": "Eugene Shemetov",
+      "lastModifiedDate": "2021-09-23T07:39:24.000Z",
+      "manageableState": "unmanaged",
+      "namespacePrefix": "fycer",
+      "type": "ApexTrigger"
+    },
+    {
+      "createdById": "0055g00000CxAcuAAF",
+      "createdByName": "Eugene Shemetov",
+      "createdDate": "2021-09-15T11:32:40.000Z",
+      "fileName": "triggers/PetTrigger.trigger",
+      "fullName": "PetTrigger",
+      "id": "01q5g000001c0tlAAA",
+      "lastModifiedById": "0055g00000CxAcuAAF",
+      "lastModifiedByName": "Eugene Shemetov",
+      "lastModifiedDate": "2021-09-15T11:32:40.000Z",
+      "manageableState": "unmanaged",
+      "namespacePrefix": "fycer",
+      "type": "ApexTrigger"
+    }
+  ]
+}
