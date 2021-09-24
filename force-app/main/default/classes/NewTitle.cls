@@ -4,7 +4,9 @@ public with sharing class NewTitle implements Database.Batchable<SObject> {
     }
   
     public void execute(Database.BatchableContext context, List<Contact> jobs) {
-
+        for (Contact jobsItem : jobs) {
+            
+        }
     }
   
     public void finish(Database.BatchableContext context) {
