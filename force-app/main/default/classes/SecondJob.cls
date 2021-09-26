@@ -11,5 +11,6 @@ public with sharing class SecondJob implements Queueable{
         }
 
         insert contacts;
+        System.scheduleBatch(new NewTitle(), 'new title for jobs', 20);
     }
 }
