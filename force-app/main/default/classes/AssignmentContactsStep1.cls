@@ -3,14 +3,20 @@
  */
 
 public with sharing class AssignmentContactsStep1 implements Database.Batchable<SObject> {
+    private Contact[] contactsAll = new Contact[]{};
+
     public Database.QueryLocator start(Database.BatchableContext context) {
-        Set<fycer__ContactAssignmentRule__c> fields =  new  Set<fycer__ContactAssignmentRule__c>(
-            [SELECT fycer__Field_API_Name__c FROM  fycer__ContactAssignmentRule__c]
-        );
+        fycer__ContactAssignmentRule__c[] fields = [SELECT fycer__Field_API_Name__c FROM  fycer__ContactAssignmentRule__c];
+        Set<String> uniqueFields =  new Set<String>();
+
+        for (fycer__ContactAssignmentRule__c fieldItem : fields) {
+            uniqueFields.add((String) fieldItem.fycer__Field_API_Name__c);
+        }
+
 
         String queue = 'SELECT';
-        for (fycer__ContactAssignmentRule__c fieldItem : fields) {
-            queue += ' ' + fieldItem.fycer__Field_API_Name__c + ',';
+        for (String fieldItem : uniqueFields) {
+            queue += ' ' + fieldItem + ',';
         }
 
         queue = queue.removeEnd(',');
@@ -18,10 +24,10 @@ public with sharing class AssignmentContactsStep1 implements Database.Batchable<
     }
 
     public void execute(Database.BatchableContext context, Contact[] contacts) {
-        Database.executeBatch(new AssignmentContactsStep2(contacts));
+        this.contactsAll.addAll(contacts);
     }
 
     public void finish(Database.BatchableContext context) {
-
+        Database.executeBatch(new AssignmentContactsStep2(this.contactsAll));
     }
 }

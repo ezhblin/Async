@@ -7,6 +7,7 @@
         <members>SecondJob</members>
         <members>AssignmentContactsStep1</members>
         <members>AssignmentContactsStep2</members>
+        <members>AssignmentContactsStep1Test</members>
         <name>ApexClass</name>
     </types>
     <types>

@@ -3,10 +3,11 @@
  */
 
 public with sharing class AssignmentContactsStep2 implements Database.Batchable<SObject> {
+    private Contact[] contactsForAssignment = new Contact[]{};
 
     public Database.QueryLocator start(Database.BatchableContext context){
         return Database.getQueryLocator(
-            'SELECT Name, fycer__ContactsLimit__c' +
+            'SELECT Name, fycer__ContactsLimit__c,' +
                 '(SELECT ' +
                     'fycer__ContactAssignmentRule__r.fycer__Field_API_Name__c, ' +
                     'fycer__ContactAssignmentRule__r.fycer__Operator__c, ' +
@@ -16,8 +17,6 @@ public with sharing class AssignmentContactsStep2 implements Database.Batchable<
             'FROM Account'
         );
     }
-
-    private Contact[] contactsForAssignment;
 
     public AssignmentContactsStep2(Contact[] contacts) {
         this.contactsForAssignment = contacts;
