@@ -3,7 +3,7 @@
  */
 
 public with sharing class AssignmentContactsStep2 implements Database.Batchable<SObject> {
-    private Contact[] contactsForAssignment = new Contact[]{};
+    private static Contact[] contactsForAssignment = new Contact[]{};
 
     public Database.QueryLocator start(Database.BatchableContext context){
         return Database.getQueryLocator(
@@ -19,7 +19,7 @@ public with sharing class AssignmentContactsStep2 implements Database.Batchable<
     }
 
     public AssignmentContactsStep2(Contact[] contacts) {
-        this.contactsForAssignment = contacts;
+        contactsForAssignment.addAll(contacts);
     }
 
     public void execute(Database.BatchableContext context, Account[] accounts) {
@@ -34,8 +34,8 @@ public with sharing class AssignmentContactsStep2 implements Database.Batchable<
 
     private void assignAccount(Contact contact, Account[] accounts) {
         for (Account accountItem : accounts) {
-            if (accountItem.fycer__ContactsLimit__c < 5) {
-                Integer rulesFalse = accountItem.fycer__AccountRules__r.size();
+            Integer rulesFalse = accountItem.fycer__AccountRules__r.size();
+            if (rulesFalse > 0 && accountItem.fycer__ContactsLimit__c < 5) {
                 for (fycer__AccountRule__c rule : accountItem.fycer__AccountRules__r) {
                     if (compare(contact, rule)) {
                         rulesFalse --;

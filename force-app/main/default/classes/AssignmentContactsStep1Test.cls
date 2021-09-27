@@ -8,8 +8,8 @@ private class AssignmentContactsStep1Test {
     static void testBehavior() {
         Test.startTest();
         Database.executeBatch(new AssignmentContactsStep1());
-//        System.assertEquals(20, [SELECT Name FROM Contact WHERE AccountId = NULL].size());
         Test.stopTest();
+        System.assertEquals(49, [SELECT Name FROM Contact WHERE AccountId = NULL].size());
     }
 
     @TestSetup
@@ -20,7 +20,7 @@ private class AssignmentContactsStep1Test {
         fycer__ContactAssignmentRule__c[] rules = new fycer__ContactAssignmentRule__c[]{};
 
 
-        for (Integer i = 0; i < 85; i++) {
+        for (Integer i = 0; i < 99; i++) {
             accounts.add(new Account(Name = 'Test'+ i));
             rules.add(new fycer__ContactAssignmentRule__c(
                     fycer__Field_API_Name__c = 'LastName',
@@ -36,11 +36,19 @@ private class AssignmentContactsStep1Test {
 
         insert testData;
 
+        Contact badContact = new Contact();
+
         fycer__AccountRule__c[] accountRule = new fycer__AccountRule__c[]{};
         for (Integer i = 0; i < 30; i++) {
+            if (i == 0) {
+                badContact.FirstName = 'Test';
+                badContact.LastName = 'badass';
+                badContact.AccountId = accounts[i].Id;
+            }
             accountRule.add(new fycer__AccountRule__c(fycer__Account__c = accounts[i].Id, fycer__ContactAssignmentRule__c = rules[i].Id));
         }
 
+        insert badContact;
         insert accountRule;
 
     }
