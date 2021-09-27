@@ -5,7 +5,8 @@
         <members>NewTitle</members>
         <members>ScheduledJob</members>
         <members>SecondJob</members>
-        <members>AssignmentContacts</members>
+        <members>AssignmentContactsStep1</members>
+        <members>AssignmentContactsStep2</members>
         <name>ApexClass</name>
     </types>
     <types>
