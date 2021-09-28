@@ -21,14 +21,14 @@ private class AssignmentContactsStep1Test {
 
 
         for (Integer i = 0; i < 99; i++) {
-            accounts.add(new Account(Name = 'Test'+ i));
+            accounts.add(new Account(Name = 'Test' + i));
             rules.add(new fycer__ContactAssignmentRule__c(
                     fycer__Field_API_Name__c = 'LastName',
                     fycer__Field_Value__c = 'test',
                     fycer__Operator__c = '='
             ));
-            contacts.add(new Contact(FirstName = 'Test'+i, LastName = 'test'));
-            contacts.add(new Contact(FirstName = 'Test2'+i, LastName = 'test'));
+            contacts.add(new Contact(FirstName = 'Test' + i, LastName = 'test'));
+            contacts.add(new Contact(FirstName = 'Test2' + i, LastName = 'test'));
         }
         testData.addAll(contacts);
         testData.addAll(accounts);
