@@ -4,16 +4,11 @@
 
 public with sharing class AddFutureMethod {
 
-    static Contact[] contacts = new Contact[]{};
-
-    public addFutureMethod() {
-        String searchKey = '%a%';
-        contacts.addAll([SELECT LastName FROM Contact WHERE FirstName LIKE :searchKey]);
-    }
-
     @Future
-    public static void processRecords() {
-
+    public static void processRecords(String contactsJSON) {
+        Contact[] contacts = (Contact[]) JSON.deserialize(contactsJSON, Contact[].class);
+        System.debug('String :' + contactsJSON);
+        System.debug(contacts);
         for (Contact contactItem : contacts) {
             contactItem.LastName += ' Valid';
         }

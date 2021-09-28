@@ -8,6 +8,8 @@
         <members>AssignmentContactsStep1</members>
         <members>AssignmentContactsStep2</members>
         <members>AssignmentContactsStep1Test</members>
+        <members>AddFutureMethod</members>
+        <members>PushFuture</members>
         <name>ApexClass</name>
     </types>
     <types>
